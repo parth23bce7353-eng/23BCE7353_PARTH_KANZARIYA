@@ -1,0 +1,89 @@
+TASK 1:
+Solutions:
+
+1.
+SELECT e.name AS employee_name, j.job_title, d.dept_name FROM Employees e JOIN Jobs j ON e.job_id = j.job_id JOIN Departments d ON e.dept_id = d.dept_id;
+
+2.
+SELECT *  FROM Employees WHERE salary > (
+    SELECT AVG(e.salary)
+    FROM Employees e
+    JOIN Departments d ON e.dept_id = d.dept_id
+    WHERE d.dept_name = 'IT'
+);
+
+3.
+SELECT d.dept_name, SUM(e.salary) AS total_salary_expenditure FROM Departments d LEFT JOIN Employees e ON d.dept_id = e.dept_id GROUP BY d.dept_name;
+
+4.
+SELECT d.dept_name, COUNT(e.emp_id) AS total_employees, AVG(e.salary) AS avg_salary FROM Departments d JOIN Employees e ON d.dept_id = e.dept_id GROUP BY d.dept_name HAVING COUNT(e.emp_id) > 2 AND AVG(e.salary) > 70000;
+
+5.
+SELECT e.name AS employee_name, m.name AS manager_name FROM Employees e LEFT JOIN Employees m ON e.manager_id = m.emp_id;
+
+6.
+SELECT name, salary FROM Employees ORDER BY salary DESC LIMIT 3;
+
+8.
+SELECT YEAR(hire_date) AS hire_year, COUNT(emp_id) AS employees_hired FROM Employees GROUP BY YEAR(hire_date) ORDER BY hire_year;
+
+10.
+SELECT name FROM Employees WHERE dept_id = (SELECT dept_id FROM Employees WHERE name = 'David') AND name <> 'David';
+
+11.
+SELECT d.dept_name, COUNT(e.emp_id) AS total_employees FROM Departments d
+LEFT JOIN Employees e ON d.dept_id = e.dept_id
+GROUP BY d.dept_name;
+
+12.
+SELECT * FROM Employees WHERE hire_date BETWEEN '2018-01-01' AND '2020-12-31' AND salary > 60000;
+
+13.
+SELECT e1.*
+FROM Employees e1
+WHERE e1.salary > (
+    SELECT AVG(e2.salary)
+    FROM Employees e2
+    WHERE e2.dept_id = e1.dept_id
+);
+
+14.
+SELECT j.job_title, e.salary FROM Employees e JOIN Jobs j ON e.job_id = j.job_id WHERE e.emp_id = 504;
+
+16.
+SELECT * 
+FROM Departments
+WHERE dept_id NOT IN (
+    SELECT DISTINCT dept_id 
+    FROM Employees e
+    JOIN Jobs j ON e.job_id = j.job_id
+    WHERE j.job_title = 'Analyst' AND dept_id IS NOT NULL
+);
+
+17.
+SELECT MAX(salary) - MIN(salary) AS salary_difference FROM Employees;
+
+19.
+SELECT manager_id, COUNT(emp_id) AS direct_reports FROM Employees
+WHERE manager_id IS NOT NULL
+GROUP BY manager_id
+HAVING COUNT(emp_id) > 2;
+
+20.
+SELECT * FROM Employees
+WHERE salary = (
+    SELECT DISTINCT salary 
+    FROM Employees 
+    ORDER BY salary DESC 
+    LIMIT 1 OFFSET 2
+);
+
+22.
+SELECT e.* FROM Employees e
+JOIN Departments d ON e.dept_id = d.dept_id
+WHERE d.dept_name = 'Finance' AND e.name LIKE '%i%';
+
+25.
+SELECT e.* FROM Employees e
+JOIN Employees m ON e.manager_id = m.emp_id
+WHERE m.name = 'Charlie';
