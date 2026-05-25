@@ -1,0 +1,27 @@
+use studentDB
+
+show dbs
+
+db.dropDatabase()
+
+db.createCollection("Employee")
+
+db.Employee.insertOne({
+  name: "Parth",
+  department: "CSE",
+  course: "B-Tech"
+})
+
+db.Employee.insertMany([
+  { name: "Ronit", department: "CSE", course: "B-Tech"},
+  { name: "Amar", department: "Electric", course: "M-Tech"},
+  { name: "Pratham", department: "Software", course: "B-Tech"}
+])
+
+db.Employee.find()
+
+db.Employee.find({department: "CSE" })
+
+db.Employee.findOne({ name: "Ronit" })
+
+db.Employee.drop()
