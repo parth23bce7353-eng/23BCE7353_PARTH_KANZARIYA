@@ -1,0 +1,65 @@
+USE vitcampus;
+
+DROP TABLE IF EXISTS products;
+DROP TABLE IF EXISTS category;
+
+CREATE TABLE category (
+    cid INT PRIMARY KEY,
+    cname VARCHAR(100) NOT NULL
+);
+
+INSERT INTO category VALUES 
+(101, 'Electronics'),
+(102, 'Home Appliances');
+
+CREATE TABLE products (
+    pid INT PRIMARY KEY,
+    pname VARCHAR(100) NOT NULL,
+    cid INT,
+    FOREIGN KEY (cid) REFERENCES category(cid)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+);
+
+INSERT INTO products VALUES 
+(501, 'Power Bank', 101),
+(502, 'Coffee Maker', 102);
+
+DELETE FROM category 
+WHERE cid = 101;
+
+UPDATE category 
+SET cid = 999 
+WHERE cid = 102;
+
+DROP TABLE IF EXISTS WORKER;
+
+CREATE TABLE WORKER (
+    WORKER_ID INT NOT NULL PRIMARY KEY,
+    FIRST_NAME VARCHAR(50),
+    SALARY INT,
+    DEPARTMENT VARCHAR(50)
+);
+
+INSERT INTO WORKER VALUES
+(1, 'Parth', 50000, 'HR'),
+(2, 'Abhay', 100000, 'HR'),
+(3, 'Vishal', 60000, 'HR'),
+(4, 'Amit', 150000, 'Admin');
+
+SELECT DEPARTMENT, COUNT(*) AS total_workers
+FROM WORKER
+GROUP BY DEPARTMENT
+HAVING COUNT(*) >= 2;
+
+SELECT DEPARTMENT, SUM(SALARY) AS total_salary
+FROM WORKER
+GROUP BY DEPARTMENT
+ORDER BY total_salary ASC
+LIMIT 2;
+
+SELECT *
+FROM WORKER
+WHERE DEPARTMENT = 'Admin'
+ORDER BY SALARY DESC
+LIMIT 1 OFFSET 1;

@@ -1,0 +1,91 @@
+CREATE DATABASE collegeDB;
+USE collegeDB;
+CREATE TABLE Students (
+    ID INT NOT NULL,
+    Name VARCHAR(100) UNIQUE NOT NULL,
+    City VARCHAR(100),
+    Phone VARCHAR(20) UNIQUE
+);
+DESC Students;
+INSERT INTO Students (ID, Name, City, Phone)
+VALUES (1, 'Parth', 'Rajkot', '9876541230');
+INSERT INTO Students (ID, Name, City, Phone)
+VALUES (2, 'Neer', NULL, '9429092201');
+INSERT INTO Students (ID, Name, City, Phone)
+VALUES (3, 'Akshat', 'Delhi', NULL);
+INSERT INTO Students (ID, Name, City, Phone)
+VALUES (4, NULL, 'Mumbai', '9898916222');
+INSERT INTO Students (ID, Name, City, Phone)
+VALUES (5, 'Neer', 'Chandigarh', '8733904933');
+
+ALTER TABLE Students
+ADD Age INT;
+
+ALTER TABLE Students
+ADD CHECK (Age >= 18);
+
+DESC Students;
+
+INSERT INTO Students (ID, Name, City, Phone, Age)
+VALUES (6, 'Karan', 'Mumbai', '8888888888', 21);
+
+INSERT INTO Students (ID, Name, City, Phone, Age)
+VALUES (7, 'Rohit', NULL, '7777777777', 19);
+
+INSERT INTO Students (ID, Name, City, Phone, Age)
+VALUES (8, 'Anil', 'Pune', NULL, 20);
+
+INSERT INTO Students (ID, Name, City, Phone, Age)
+VALUES (9, 'Surya', 'Rajkot', '6666666666', 16);
+
+INSERT INTO Students (ID, Name, City, Phone, Age)
+VALUES (10, 'Kevin', 'Delhi', '5555555555', 22);
+
+ALTER TABLE Students
+ADD PRIMARY KEY (ID);
+
+DESC Students;
+
+ALTER TABLE Students
+DROP PRIMARY KEY;
+
+DESC Students;
+
+ALTER TABLE Students
+ADD PRIMARY KEY (Phone);
+
+DESC Students;
+
+ALTER TABLE Students
+MODIFY City VARCHAR(100) NOT NULL;
+
+DESC Students;
+
+ALTER TABLE Students
+MODIFY City VARCHAR(100) NULL;
+
+DESC Students;
+
+CREATE TABLE Courses (
+    CourseID INT PRIMARY KEY,
+    StudentPhone VARCHAR(20),
+    CourseName VARCHAR(100),
+    FOREIGN KEY (StudentPhone) REFERENCES Students(Phone)
+);
+
+DESC Courses;
+
+INSERT INTO Courses (CourseID, StudentPhone, CourseName)
+VALUES (1, '9876543210', 'DBMS');
+
+INSERT INTO Courses (CourseID, StudentPhone, CourseName)
+VALUES (2, '9123456780', 'Java');
+
+INSERT INTO Courses (CourseID, StudentPhone, CourseName)
+VALUES (3, '7777777777', 'Python');
+
+INSERT INTO Courses (CourseID, StudentPhone, CourseName)
+VALUES (4, '1234567890', 'AI');
+
+INSERT INTO Courses (CourseID, StudentPhone, CourseName)
+VALUES (5, NULL, 'C++');

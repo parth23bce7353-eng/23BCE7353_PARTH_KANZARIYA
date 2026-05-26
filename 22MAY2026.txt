@@ -1,0 +1,35 @@
+create database vit;
+use  vit;
+create table department(did int primary key, dname varchar(25) not null unique);
+insert into department value(101,'CSE'),(106,'SSE'),(102,'MSE'),(103,'HSE'),(104,'ESE'),(105,'EEE');
+select * from department order by did;
+
+create table HOD
+(Hid int primary key,
+hname varchar(20) not null unique);
+
+insert into HOD values
+(101,'Avni'),(102,'Kartik'),(104,'Vijayamala'),
+(105,'Krishna');
+
+select * from HOD;
+
+
+SELECT * FROM 
+department CROSS JOIN hod order by did asc;
+
+
+
+SELECT * FROM 
+department INNER JOIN hod on department.did=hod.hid;
+
+
+SELECT * FROM 
+department NATURAL JOIN hod;
+
+SELECT * FROM 
+department LEFT OUTER JOIN hod on department.did=hod.hid ORDER BY DID ASC;
+
+
+SELECT * FROM 
+department FULL JOIN hod on department.did=hod.hid ORDER BY DID ASC;
