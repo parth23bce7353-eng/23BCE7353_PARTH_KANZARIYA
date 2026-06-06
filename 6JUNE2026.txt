@@ -1,0 +1,361 @@
+use student
+switched to db student
+
+
+db.sales.drop()
+true
+
+
+
+db.sales.insertMany([
+	{ "_id" : 1, "item" : "Americanos", "price" : 5, "size": "Short", "quantity" : 22, "date" : ISODate("2022-01-15T08:00:00Z") },
+	{ "_id" : 2, "item" : "Cappuccino", "price" : 6, "size": "Short","quantity" : 12, "date" : ISODate("2022-01-16T09:00:00Z") },
+	{ "_id" : 3, "item" : "Lattes", "price" : 15, "size": "Grande","quantity" : 25, "date" : ISODate("2022-01-16T09:05:00Z") },
+	{ "_id" : 4, "item" : "Mochas", "price" : 25,"size": "Tall", "quantity" : 11, "date" : ISODate("2022-02-17T08:00:00Z") },
+	{ "_id" : 5, "item" : "Americanos", "price" : 10, "size": "Grande","quantity" : 12, "date" : ISODate("2022-02-18T21:06:00Z") },
+	{ "_id" : 6, "item" : "Cappuccino", "price" : 7, "size": "Tall","quantity" : 20, "date" : ISODate("2022-02-20T10:07:00Z") },
+	{ "_id" : 7, "item" : "Lattes", "price" : 25,"size": "Tall", "quantity" : 30, "date" : ISODate("2022-02-21T10:08:00Z") },
+	{ "_id" : 8, "item" : "Americanos", "price" : 10, "size": "Grande","quantity" : 21, "date" : ISODate("2022-02-22T14:09:00Z") },
+	{ "_id" : 9, "item" : "Cappuccino", "price" : 10, "size": "Grande","quantity" : 17, "date" : ISODate("2022-02-23T14:09:00Z") },
+	{ "_id" : 10, "item" : "Americanos", "price" : 8, "size": "Tall","quantity" : 15, "date" : ISODate("2022-02-25T14:09:00Z")}
+]);
+
+
+
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': 1,
+    '1': 2,
+    '2': 3,
+    '3': 4,
+    '4': 5,
+    '5': 6,
+    '6': 7,
+    '7': 8,
+    '8': 9,
+    '9': 10
+  }
+}
+
+
+db.sales.getIndexes()
+
+Output:
+[ { v: 2, key: { _id: 1 }, name: '_id_' } ]
+
+
+db.sales.find()
+
+Output:
+{
+  _id: 1,
+  item: 'Americanos',
+  price: 5,
+  size: 'Short',
+  quantity: 22,
+  date: 2022-01-15T08:00:00.000Z
+}
+{
+  _id: 2,
+  item: 'Cappuccino',
+  price: 6,
+  size: 'Short',
+  quantity: 12,
+  date: 2022-01-16T09:00:00.000Z
+}
+{
+  _id: 3,
+  item: 'Lattes',
+  price: 15,
+  size: 'Grande',
+  quantity: 25,
+  date: 2022-01-16T09:05:00.000Z
+}
+{
+  _id: 4,
+  item: 'Mochas',
+  price: 25,
+  size: 'Tall',
+  quantity: 11,
+  date: 2022-02-17T08:00:00.000Z
+}
+{
+  _id: 5,
+  item: 'Americanos',
+  price: 10,
+  size: 'Grande',
+  quantity: 12,
+  date: 2022-02-18T21:06:00.000Z
+}
+{
+  _id: 6,
+  item: 'Cappuccino',
+  price: 7,
+  size: 'Tall',
+  quantity: 20,
+  date: 2022-02-20T10:07:00.000Z
+}
+{
+  _id: 7,
+  item: 'Lattes',
+  price: 25,
+  size: 'Tall',
+  quantity: 30,
+  date: 2022-02-21T10:08:00.000Z
+}
+{
+  _id: 8,
+  item: 'Americanos',
+  price: 10,
+  size: 'Grande',
+  quantity: 21,
+  date: 2022-02-22T14:09:00.000Z
+}
+{
+  _id: 9,
+  item: 'Cappuccino',
+  price: 10,
+  size: 'Grande',
+  quantity: 17,
+  date: 2022-02-23T14:09:00.000Z
+}
+{
+  _id: 10,
+  item: 'Americanos',
+  price: 8,
+  size: 'Tall',
+  quantity: 15,
+  date: 2022-02-25T14:09:00.000Z
+}
+
+
+db.sales.createIndex({item: 1})
+
+Output:
+item_1
+ReferenceError: item_1 is not defined
+db.sales.createIndex({item: 1})
+item_1
+
+
+db.sales.getIndexes()
+
+Output:
+[
+  { v: 2, key: { _id: 1 }, name: '_id_' },
+  { v: 2, key: { item: 1 }, name: 'item_1' }
+]
+student
+Selection deleted
+
+
+
+db.sales.insertMany([
+	{ "_id" : 1, "item" : "Americanos", "price" : 5, "size" : "Short", "quantity" : 22, "name" : "Aarav Sharma", "email" : "aarav.sharma@gmail.com", "date" : ISODate("2022-01-15T08:00:00Z") },
+	{ "_id" : 2, "item" : "Cappuccino", "price" : 6, "size" : "Short", "quantity" : 12, "name" : "Priya Verma", "email" : "priya.verma@gmail.com", "date" : ISODate("2022-01-16T09:00:00Z") },
+	{ "_id" : 3, "item" : "Lattes", "price" : 15, "size" : "Grande", "quantity" : 25, "name" : "Rohan Gupta", "email" : "rohan.gupta@gmail.com", "date" : ISODate("2022-01-16T09:05:00Z") },
+	{ "_id" : 4, "item" : "Mochas", "price" : 25, "size" : "Tall", "quantity" : 11, "name" : "Ananya Singh", "email" : "ananya.singh@gmail.com", "date" : ISODate("2022-02-17T08:00:00Z") },
+	{ "_id" : 5, "item" : "Americanos", "price" : 10, "size" : "Grande", "quantity" : 12, "name" : "Karan Mehta", "email" : "karan.mehta@gmail.com", "date" : ISODate("2022-02-18T21:06:00Z") },
+	{ "_id" : 6, "item" : "Cappuccino", "price" : 7, "size" : "Tall", "quantity" : 20, "name" : "Sneha Patel", "email" : "sneha.patel@gmail.com", "date" : ISODate("2022-02-20T10:07:00Z") },
+	{ "_id" : 7, "item" : "Lattes", "price" : 25, "size" : "Tall", "quantity" : 30, "name" : "Rahul Kapoor", "email" : "rahul.kapoor@gmail.com", "date" : ISODate("2022-02-21T10:08:00Z") },
+	{ "_id" : 8, "item" : "Americanos", "price" : 10, "size" : "Grande", "quantity" : 21, "name" : "Neha Joshi", "email" : "neha.joshi@gmail.com", "date" : ISODate("2022-02-22T14:09:00Z") },
+	{ "_id" : 9, "item" : "Cappuccino", "price" : 10, "size" : "Grande", "quantity" : 17, "name" : "Vikram Rao", "email" : "vikram.rao@gmail.com", "date" : ISODate("2022-02-23T14:09:00Z") },
+	{ "_id" : 10, "item" : "Americanos", "price" : 8, "size" : "Tall", "quantity" : 15, "name" : "Pooja Nair", "email" : "pooja.nair@gmail.com", "date" : ISODate("2022-02-25T14:09:00Z") }
+]);
+
+
+
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': 1,
+    '1': 2,
+    '2': 3,
+    '3': 4,
+    '4': 5,
+    '5': 6,
+    '6': 7,
+    '7': 8,
+    '8': 9,
+    '9': 10
+  }
+}
+
+
+db.sales.createIndex({ _id: 1}, {unique: true});
+
+Output:
+MongoServerError[InvalidIndexSpecificationOption]: The field 'unique' is not valid for an _id index specification. Specification: { unique: true, name: "_id_1", key: { _id: 1 }, v: 2 }
+
+
+db.sales.createIndex({ email: 1}, {unique: true});
+
+Output:
+email_1
+db.sales.find()
+
+Output:
+{
+  _id: 1,
+  item: 'Americanos',
+  price: 5,
+  size: 'Short',
+  quantity: 22,
+  name: 'Aarav Sharma',
+  email: 'aarav.sharma@gmail.com',
+  date: 2022-01-15T08:00:00.000Z
+}
+{
+  _id: 2,
+  item: 'Cappuccino',
+  price: 6,
+  size: 'Short',
+  quantity: 12,
+  name: 'Priya Verma',
+  email: 'priya.verma@gmail.com',
+  date: 2022-01-16T09:00:00.000Z
+}
+{
+  _id: 3,
+  item: 'Lattes',
+  price: 15,
+  size: 'Grande',
+  quantity: 25,
+  name: 'Rohan Gupta',
+  email: 'rohan.gupta@gmail.com',
+  date: 2022-01-16T09:05:00.000Z
+}
+{
+  _id: 4,
+  item: 'Mochas',
+  price: 25,
+  size: 'Tall',
+  quantity: 11,
+  name: 'Ananya Singh',
+  email: 'ananya.singh@gmail.com',
+  date: 2022-02-17T08:00:00.000Z
+}
+{
+  _id: 5,
+  item: 'Americanos',
+  price: 10,
+  size: 'Grande',
+  quantity: 12,
+  name: 'Karan Mehta',
+  email: 'karan.mehta@gmail.com',
+  date: 2022-02-18T21:06:00.000Z
+}
+{
+  _id: 6,
+  item: 'Cappuccino',
+  price: 7,
+  size: 'Tall',
+  quantity: 20,
+  name: 'Sneha Patel',
+  email: 'sneha.patel@gmail.com',
+  date: 2022-02-20T10:07:00.000Z
+}
+{
+  _id: 7,
+  item: 'Lattes',
+  price: 25,
+  size: 'Tall',
+  quantity: 30,
+  name: 'Rahul Kapoor',
+  email: 'rahul.kapoor@gmail.com',
+  date: 2022-02-21T10:08:00.000Z
+}
+{
+  _id: 8,
+  item: 'Americanos',
+  price: 10,
+  size: 'Grande',
+  quantity: 21,
+  name: 'Neha Joshi',
+  email: 'neha.joshi@gmail.com',
+  date: 2022-02-22T14:09:00.000Z
+}
+{
+  _id: 9,
+  item: 'Cappuccino',
+  price: 10,
+  size: 'Grande',
+  quantity: 17,
+  name: 'Vikram Rao',
+  email: 'vikram.rao@gmail.com',
+  date: 2022-02-23T14:09:00.000Z
+}
+{
+  _id: 10,
+  item: 'Americanos',
+  price: 8,
+  size: 'Tall',
+  quantity: 15,
+  name: 'Pooja Nair',
+  email: 'pooja.nair@gmail.com',
+  date: 2022-02-25T14:09:00.000Z
+}
+
+
+db.sales.getIndexes()
+
+Output:
+[
+  { v: 2, key: { _id: 1 }, name: '_id_' },
+  { v: 2, key: { email: 1 }, name: 'email_1', unique: true }
+]
+student
+Selection deleted
+
+
+db.sales.dropIndex('name')
+
+Output:
+{ nIndexesWas: 3, ok: 1 }
+
+
+db.sales.getIndexes()
+
+Output:
+[
+  { v: 2, key: { _id: 1 }, name: '_id_' },
+  { v: 2, key: { email: 1 }, name: 'email_1', unique: true },
+  { v: 2, key: { name: 1, email: 1 }, name: 'name_1_email_1' }
+]
+
+
+db.sales.createIndex({runtime: -1})
+
+Output:
+runtime_-1
+
+
+db.sales.getIndexes()
+
+Output:
+[
+  { v: 2, key: { _id: 1 }, name: '_id_' },
+  { v: 2, key: { email: 1 }, name: 'email_1', unique: true },
+  { v: 2, key: { name: 1, email: 1 }, name: 'name_1_email_1' },
+  { v: 2, key: { runtime: -1 }, name: 'runtime_-1' }
+]
+
+
+db.sales.dropIndex({runtime: -1});
+
+Output:
+{ nIndexesWas: 4, ok: 1 }
+
+
+db.sales.getIndexes()
+
+Output:
+[
+  { v: 2, key: { _id: 1 }, name: '_id_' },
+  { v: 2, key: { email: 1 }, name: 'email_1', unique: true },
+  { v: 2, key: { name: 1, email: 1 }, name: 'name_1_email_1' }
+]
+
+student
+Selection deleted
