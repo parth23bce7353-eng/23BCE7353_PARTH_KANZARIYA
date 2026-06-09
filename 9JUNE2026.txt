@@ -1,0 +1,47 @@
+1.
+
+C:\>mkdir data
+C:\>cd data
+C:\data>cd db0
+C:\data\db0>"C:\Program Files\MongoDB\Server\8.0\bin\mongod.exe" --replSet myReplSet --dbpath C:\data\db0 --port 27017 --bind_ip localhost
+The system cannot find the path specified.
+C:\data\db0>"C:\Program Files\MongoDB\Server\8.3\bin\mongod.exe" --replSet myReplSet --dbpath C:\data\db0 --port 27017 --bind_ip localhost
+{"t":{"$date":"2026-06-09T19:36:19.485+05:30"},"s":"I",  "c":"-",        "id":8991200, "ctx":"thread1","msg":"Shuffling initializers","attr":{"seed":1327424227}}
+{"t":{"$date":"2026-06-09T19:36:19.588+05:30"},"s":"I",  "c":"CONTROL",  "id":97374,   "ctx":"thread1","msg":"Automatically disabling TLS 1.0 and TLS 1.1, to force-enable TLS 1.1 specify --sslDisabledProtocols 'TLS1_0'; to force-enable TLS 1.0 specify --sslDisabledProtocols 'none'"}
+
+
+
+2.
+
+C:\>cd data/db1
+C:\data\db1>"C:\Program Files\MongoDB\Server\8.0\bin\mongod.exe" --replSet myReplSet --dbpath C:\data\db1 --port 27018 --bind_ip localhost
+The system cannot find the path specified.
+C:\data\db1>"C:\Program Files\MongoDB\Server\8.3\bin\mongod.exe" --replSet myReplSet --dbpath C:\data\db1 --port 27018 --bind_ip localhost
+{"t":{"$date":"2026-06-09T19:35:44.309+05:30"},"s":"I",  "c":"-",        "id":8991200, "ctx":"thread1","msg":"Shuffling initializers","attr":{"seed":2410334881}}
+{"t":{"$date":"2026-06-09T19:35:44.438+05:30"},"s":"I",  "c":"CONTROL",  "id":97374,   "ctx":"thread1","msg":"Automatically disabling TLS 1.0 and TLS 1.1, to force-enable TLS 1.1 specify --sslDisabledProtocols 'TLS1_0'; to force-enable TLS 1.0 specify --sslDisabledProtocols 'none'"}
+
+
+
+3.
+
+C:\>cd data/db2
+C:\data\db2>"C:\Program Files\MongoDB\Server\8.3\bin\mongod.exe" --replSet myReplSet --dbpath C:\data\db2 --port 27019 --bind_ip localhost
+{"t":{"$date":"2026-06-09T19:36:09.121+05:30"},"s":"I",  "c":"-",        "id":8991200, "ctx":"thread1","msg":"Shuffling initializers","attr":{"seed":3512842212}}
+{"t":{"$date":"2026-06-09T19:36:09.150+05:30"},"s":"I",  "c":"CONTROL",  "id":97374,   "ctx":"thread1","msg":"Automatically disabling TLS 1.0 and TLS 1.1, to force-enable TLS 1.1 specify --sslDisabledProtocols 'TLS1_0'; to force-enable TLS 1.0 specify --sslDisabledProtocols 'none'"}
+
+
+MongoDB Query:
+rs.initiate({
+    _id: "myReplSet",
+    members: [
+        { _id: 0, host: "localhost:27017" },
+        { _id: 1, host: "localhost:27018" },
+        { _id: 2, host: "localhost:27019" }
+    ]
+})
+
+Output:
+MongoServerError[NoReplicationEnabled]: This node was not started with replication enabled.
+
+Executed on port 27017.
+Returns: MongoServerError[NoReplicationEnabled].
